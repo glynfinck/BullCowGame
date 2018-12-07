@@ -45,11 +45,13 @@ void play_game()
 	int32 max_tries = bc_game.get_max_tries();
 
 	// Loop for the number of turns asking for guesses
-	// TODO change from for to while loop once we are validating tries
-	for (int32 i = 0; i < max_tries; i++)
+	for (int32 i = 0; i < max_tries; i++) // TODO change from for to while loop once we are validating tries
 	{
 		FText guess = get_guess(); // TODO make loop check for valid
 		
+
+		EGuessStatus status = bc_game.check_guess_validity(guess);
+
 		// Submit valid guess to the game, and receive counts
 		fbull_cow_count bull_cow_count = bc_game.submit_guess(guess);
 		// Print number of bulls and cows
@@ -59,7 +61,7 @@ void play_game()
 	// TODO add a game summary
 }
 
-FText get_guess() 
+FText get_guess() //TODO change to get valid guess
 {
 	std::cout << std::endl << "Try " << bc_game.get_current_try();
 	std::cout << ". Enter your guess here: ";

@@ -31,13 +31,34 @@ bool fbull_cow_game::is_game_won() const
 	return false;
 }
 
+
+
 // Checks if the guessed word is the same as the hidden word.
 // Returns: True if guess = hidden word
 //			False if guess != hidden word
-bool fbull_cow_game::check_guess(FString) const
+EGuessStatus fbull_cow_game::check_guess_validity(FString) const
 {
-	return false;
+	// if the guess isn't an isogram
+	if (false)
+	{
+		return EGuessStatus::Not_Isogram;
+	}
+	else if (false) // if the guess isn't all lowercase
+	{
+		return EGuessStatus::Not_Lowercase;
+	}
+	else if (false) // if the lenght is wrong
+	{
+		return EGuessStatus::Invalid_Length;
+	}
+	else // otherwise
+	{
+		EGuessStatus::Ok;
+	}
 }
+
+
+
 
 // Receives a VALID guess, increments turn, and returns count
 fbull_cow_count fbull_cow_game::submit_guess(FString guess)
