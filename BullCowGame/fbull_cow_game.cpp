@@ -1,5 +1,6 @@
 #include "fbull_cow_game.h"
 
+// Using statements
 using FString = std::string;
 using int32 = int;
 
@@ -17,7 +18,7 @@ void fbull_cow_game::reset()
 	constexpr int32 MAX_TRIES = 8;
 	my_max_tries = MAX_TRIES;
 
-	const FString HIDDEN_WORD = "planet";
+	const FString HIDDEN_WORD = "plane";
 	my_hidden_word = HIDDEN_WORD;
 
 	my_current_try = 1;
