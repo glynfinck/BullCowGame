@@ -1,4 +1,4 @@
-# Bull-Cow-Game
+# Bull Cow Game
 A simple game that runs on a windows console written in C++.
 
 Game Objective:
