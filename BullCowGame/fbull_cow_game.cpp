@@ -1,4 +1,6 @@
 #include "fbull_cow_game.h"
+#include <map>
+#define TMap std::map
 
 // Using statements
 using FString = std::string;
@@ -11,49 +13,47 @@ fbull_cow_game::fbull_cow_game() { reset(); }
 int32 fbull_cow_game::get_max_tries() const { return my_max_tries; }
 int32 fbull_cow_game::get_current_try() const { return my_current_try; }
 int32 fbull_cow_game::get_hidden_word_length() const { return my_hidden_word.length(); }
+bool fbull_cow_game::is_game_won() const { return bgame_won; }
+
 
 // Resets the game
 void fbull_cow_game::reset()
 {
-	constexpr int32 MAX_TRIES = 8;
+	constexpr int32 MAX_TRIES = 3;
+	const FString HIDDEN_WORD = "planet";
+
 	my_max_tries = MAX_TRIES;
-
-	const FString HIDDEN_WORD = "plane";
 	my_hidden_word = HIDDEN_WORD;
-
+	bgame_won = false;
 	my_current_try = 1;
+
 	return;
 }
 
-// Returns the status of the game (False = Not Won, True = Won)
-bool fbull_cow_game::is_game_won() const
-{
-	return false;
-}
 
 
 
 // Checks if the guessed word is the same as the hidden word.
 // Returns: True if guess = hidden word
 //			False if guess != hidden word
-EGuessStatus fbull_cow_game::check_guess_validity(FString) const
+EGuessStatus fbull_cow_game::check_guess_validity(FString guess) const
 {
-	// if the guess isn't an isogram
-	if (false)
+	
+	if (!is_isogram(guess)) // If the guess isn't an isogram 
 	{
 		return EGuessStatus::Not_Isogram;
 	}
-	else if (false) // if the guess isn't all lowercase
+	else if (!is_lowercase(guess)) // If the guess isn't all lowercase
 	{
-		return EGuessStatus::Not_Lowercase;
+		return EGuessStatus::Not_Lowercase; // TODO write a function
 	}
-	else if (false) // if the lenght is wrong
+	else if (guess.length() != get_hidden_word_length()) // If the length is wrong
 	{
 		return EGuessStatus::Invalid_Length;
 	}
 	else // otherwise
 	{
-		EGuessStatus::Ok;
+		return EGuessStatus::Ok;
 	}
 }
 
@@ -61,22 +61,20 @@ EGuessStatus fbull_cow_game::check_guess_validity(FString) const
 
 
 // Receives a VALID guess, increments turn, and returns count
-fbull_cow_count fbull_cow_game::submit_guess(FString guess)
+fbull_cow_count fbull_cow_game::submit_valid_guess(FString guess)
 {
-	// Increment the turn number
 	my_current_try++;
-	// Setup a return variable
 	fbull_cow_count bull_cow_count;
+	int32 word_length = my_hidden_word.length(); // Assuming same length as guess
 
 	// Loop through all letters in the guess
-	int32 hidden_word_length = my_hidden_word.length();
-	for (int32 mhw_char = 0; mhw_char < hidden_word_length; mhw_char++)
+	for (int32 mhw_char = 0; mhw_char < word_length; mhw_char++)
 	{
 		// Compare letters against the hidden word
-		for (int32 j = 0; j < hidden_word_length; j++)
+		for (int32 j = 0; j < word_length; j++)
 		{
 			// If they match 
-			if (my_hidden_word[mhw_char] == guess[j]) 
+			if (guess[j] == my_hidden_word[mhw_char])
 			{
 				if (j == mhw_char) // If there in the same place
 				{
@@ -90,6 +88,51 @@ fbull_cow_count fbull_cow_game::submit_guess(FString guess)
 			}
 		}
 	}
-
+	if (bull_cow_count.bulls == word_length) 
+	{
+		bgame_won = true;
+	}
+	else 
+	{
+		bgame_won = false;
+	}
 	return bull_cow_count;
+}
+
+bool fbull_cow_game::is_isogram(FString word) const
+{
+	if (word.length() <= 1) { return true; }
+
+	// setup map
+	TMap <char, bool> seen_letters;
+
+	// Loop from through each character in the word
+	for (auto letter : word)
+	{
+		letter = tolower(letter);
+
+		if (seen_letters[letter]) { 
+			return false; 
+		} else {
+			seen_letters[letter] = true;
+		}
+	}
+	return true;
+}
+
+bool fbull_cow_game::is_lowercase(FString word) const
+{
+	if (word.length() < 1) { return true; }
+	
+	// Loop through each character in the word
+	for (auto letter : word) 
+	{
+		if (!islower(letter)) // if the lowercase of the letter is not equal to the letter
+		{
+			return false; // then the word does not contain all lowercase letters
+		}
+		// otherwise, continue looping
+	} 
+	// the word contains all lowercase letters
+	return true;
 }
