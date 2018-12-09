@@ -19,8 +19,8 @@ bool fbull_cow_game::is_game_won() const { return bgame_won; }
 // Resets the game
 void fbull_cow_game::reset()
 {
-	constexpr int32 MAX_TRIES = 3;
-	const FString HIDDEN_WORD = "planet";
+	constexpr int32 MAX_TRIES = 8;
+	const FString HIDDEN_WORD = "bat";
 
 	my_max_tries = MAX_TRIES;
 	my_hidden_word = HIDDEN_WORD;

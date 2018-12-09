@@ -35,9 +35,16 @@ int main()
 void print_intro()
 {
 	// Print the introduction text for the game.
-	std::cout << "Welcome to Bulls & Cows!" << std::endl;
+	std::cout << "\n\nWelcome to Bulls and Cows, a fun word game.\n";
+	std::cout << std::endl;
+	std::cout << "          }   {         ___ " << std::endl;
+	std::cout << "          (o o)        (o o) " << std::endl;
+	std::cout << "   /-------\\ /          \\ /-------\\ " << std::endl;
+	std::cout << "  / | BULL |O            O| COW  | \\ " << std::endl;
+	std::cout << " *  |-,--- |              |------|  * " << std::endl;
+	std::cout << "    ^      ^              ^      ^ " << std::endl;
 	std::cout << "Can you guess the " << bc_game.get_hidden_word_length();
-	std::cout << " letter isogram I'm thinking of?" << std::endl;
+	std::cout << " letter isogram I'm thinking of?\n(Hint: an isogram is a word with no repeating letters)" << std::endl;
 	return;
 }
 
@@ -71,7 +78,7 @@ FText get_valid_guess()
 	do {
 		// Get a guess from the player
 		std::cout << std::endl << "Try " << bc_game.get_current_try();
-		std::cout << ". Enter your guess here: ";
+		std::cout << " of " << bc_game.get_max_tries() << ". Enter your guess here: ";
 		std::getline(std::cin, guess);
 
 		// Check guess status and give feedback
