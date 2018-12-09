@@ -12,7 +12,6 @@ user interaction. For game logic see the fbull_cow_game class.
 using FText = std::string;
 using int32 = int32;
 
-void print_intro();
 void play_game();
 FText get_valid_guess();
 void print_game_summary();
@@ -24,7 +23,6 @@ fbull_cow_game bc_game; // Instantiate a new game
 int main() 
 {
 	do {
-		print_intro();
 		play_game();
 	} 
 	while (ask_to_play_again());
@@ -32,29 +30,11 @@ int main()
 	return 0; // Exit the application
 }
 
-void print_intro()
-{
-	// Print the introduction text for the game.
-	std::cout << "Welcome to Bulls and Cows, a fun word game.\n";
-	std::cout << std::endl;
-	std::cout << "          }   {         ___ " << std::endl;
-	std::cout << "          (o o)        (o o) " << std::endl;
-	std::cout << "   /-------\\ /          \\ /-------\\ " << std::endl;
-	std::cout << "  / | BULL |O            O| COW  | \\ " << std::endl;
-	std::cout << " *  |-,--- |              |------|  * " << std::endl;
-	std::cout << "    ^      ^              ^      ^ " << std::endl;
-	std::cout << "Can you guess the " << bc_game.get_hidden_word_length();
-	std::cout << " letter isogram I'm thinking of?\n(Hint: an isogram is a word with no repeating letters)\n" << std::endl;
-	return;
-}
-
 
 void play_game()
 {
 	bc_game.reset();
 	int32 max_tries = bc_game.get_max_tries();
-
-
 
 	// Loop asking for guesses while game
 	// is NOT won and there are still tries remaining
@@ -102,10 +82,9 @@ FText get_valid_guess()
 			// Assume the guess is valid
 			break;
 		}
-	} while (status != EGuessStatus::Ok); // Keep looping until we receive a valid guess
+	} while (status != EGuessStatus::Ok); // Keep looping until a valid guess is received
 	return guess;
 }
-
 
 
 bool ask_to_play_again()

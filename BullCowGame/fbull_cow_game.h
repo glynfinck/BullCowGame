@@ -25,7 +25,7 @@ enum class EWordLengthStatus
 {
 	Invalid,
 	Ok,
-	Incorrect_Type,
+	Not_A_Valid_Number,
 	Not_Within_Range
 };
 
@@ -34,6 +34,8 @@ class fbull_cow_game
 {
 public:
 	fbull_cow_game(); // Constructor
+
+	void print_game_intro();
 	
 	int32 get_max_tries() const;
 	int32 get_current_try() const;
@@ -53,8 +55,21 @@ private:
 	// See constructor for initialization
 	int32 my_current_try;
 	bool bgame_won;
+	FString CHOSEN_WORD_LENGTH;
 	FString my_hidden_word;
+	FString HIDDEN_WORD3;
+	FString HIDDEN_WORD4;
+	FString HIDDEN_WORD5;
+	FString HIDDEN_WORD6;
+	FString HIDDEN_WORD7;
+
+	// Checks if submitted word length choice is valid
+	FString get_valid_word_length() const;
+	EWordLengthStatus check_word_length_validity(FString) const;
+
 
 	bool is_isogram(FString) const;
 	bool is_lowercase(FString) const;
+	bool is_string_number(FString) const;
+	bool is_string_number_within_range(FString) const;
 };
