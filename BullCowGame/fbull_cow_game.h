@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <iostream>
 
 using FString = std::string;
 using int32 = int;
@@ -18,6 +19,14 @@ enum class EGuessStatus
 	Not_Isogram,
 	Not_Lowercase,
 	Invalid_Length,
+};
+
+enum class EWordLengthStatus 
+{
+	Invalid,
+	Ok,
+	Incorrect_Type,
+	Not_Within_Range
 };
 
 
@@ -43,7 +52,6 @@ public:
 private:
 	// See constructor for initialization
 	int32 my_current_try;
-	int32 my_max_tries;
 	bool bgame_won;
 	FString my_hidden_word;
 

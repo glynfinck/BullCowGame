@@ -35,7 +35,7 @@ int main()
 void print_intro()
 {
 	// Print the introduction text for the game.
-	std::cout << "\n\nWelcome to Bulls and Cows, a fun word game.\n";
+	std::cout << "Welcome to Bulls and Cows, a fun word game.\n";
 	std::cout << std::endl;
 	std::cout << "          }   {         ___ " << std::endl;
 	std::cout << "          (o o)        (o o) " << std::endl;
@@ -44,14 +44,17 @@ void print_intro()
 	std::cout << " *  |-,--- |              |------|  * " << std::endl;
 	std::cout << "    ^      ^              ^      ^ " << std::endl;
 	std::cout << "Can you guess the " << bc_game.get_hidden_word_length();
-	std::cout << " letter isogram I'm thinking of?\n(Hint: an isogram is a word with no repeating letters)" << std::endl;
+	std::cout << " letter isogram I'm thinking of?\n(Hint: an isogram is a word with no repeating letters)\n" << std::endl;
 	return;
 }
+
 
 void play_game()
 {
 	bc_game.reset();
 	int32 max_tries = bc_game.get_max_tries();
+
+
 
 	// Loop asking for guesses while game
 	// is NOT won and there are still tries remaining
@@ -102,6 +105,8 @@ FText get_valid_guess()
 	} while (status != EGuessStatus::Ok); // Keep looping until we receive a valid guess
 	return guess;
 }
+
+
 
 bool ask_to_play_again()
 {

@@ -10,19 +10,28 @@ using int32 = int;
 fbull_cow_game::fbull_cow_game() { reset(); }
 
 // Getter methods
-int32 fbull_cow_game::get_max_tries() const { return my_max_tries; }
 int32 fbull_cow_game::get_current_try() const { return my_current_try; }
 int32 fbull_cow_game::get_hidden_word_length() const { return my_hidden_word.length(); }
 bool fbull_cow_game::is_game_won() const { return bgame_won; }
 
+int32 fbull_cow_game::get_max_tries() const 
+{ 
+	TMap<int32, int32> word_lenght_to_max_tries{ {3,4} , {4,7} , {5,10} , {6,16} , {7,20} };
+	return word_lenght_to_max_tries[my_hidden_word.length()];
+}
 
 // Resets the game
 void fbull_cow_game::reset()
 {
-	constexpr int32 MAX_TRIES = 8;
-	const FString HIDDEN_WORD = "bat";
+	const FString HIDDEN_WORD3 = "eat";
+	const FString HIDDEN_WORD4 = "four";
+	const FString HIDDEN_WORD5 = "lying";
+	const FString HIDDEN_WORD6 = "planet";
+	const FString HIDDEN_WORD7 = "tabloid";
 
-	my_max_tries = MAX_TRIES;
+
+	const FString HIDDEN_WORD = HIDDEN_WORD3;
+
 	my_hidden_word = HIDDEN_WORD;
 	bgame_won = false;
 	my_current_try = 1;
@@ -56,9 +65,6 @@ EGuessStatus fbull_cow_game::check_guess_validity(FString guess) const
 		return EGuessStatus::Ok;
 	}
 }
-
-
-
 
 // Receives a VALID guess, increments turn, and returns count
 fbull_cow_count fbull_cow_game::submit_valid_guess(FString guess)
