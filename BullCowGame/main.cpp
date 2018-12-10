@@ -4,6 +4,7 @@ user interaction. For game logic see the fbull_cow_game class.
 */
 
 #pragma once
+
 #include <iostream>
 #include <string>
 #include "fbull_cow_game.h"
@@ -37,7 +38,7 @@ void play_game()
 
 	// Loop asking for guesses while game
 	// is NOT won and there are still tries remaining
-	while (!bc_game.is_game_won() && bc_game.get_current_try() <= max_tries) // TODO change from FOR to WHILE loop
+	while (!bc_game.is_game_won() && bc_game.get_current_try() <= max_tries)
 	{
 		FText guess = get_valid_guess();
 		

@@ -8,6 +8,7 @@
 */
 
 #pragma once
+
 #include "fbull_cow_game.h"
 #include <map>
 #define TMap std::map
