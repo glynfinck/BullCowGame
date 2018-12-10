@@ -1,5 +1,7 @@
 ﻿  fbull_cow_game.cpp
-c:\users\glyn\documents\visual studio 2017\projects\bullcowgame\bullcowgame\fbull_cow_game.cpp(43): warning C4267: 'return': conversion from 'size_t' to 'int32', possible loss of data
-c:\users\glyn\documents\visual studio 2017\projects\bullcowgame\bullcowgame\fbull_cow_game.cpp(49): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-c:\users\glyn\documents\visual studio 2017\projects\bullcowgame\bullcowgame\fbull_cow_game.cpp(156): warning C4267: 'initializing': conversion from 'size_t' to 'int32', possible loss of data
+c:\users\glyn\documents\visual studio 2017\projects\bullcowgame\bullcowgame\fbull_cow_game.cpp(44): warning C4267: 'return': conversion from 'size_t' to 'int32', possible loss of data
+c:\users\glyn\documents\visual studio 2017\projects\bullcowgame\bullcowgame\fbull_cow_game.cpp(50): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+c:\users\glyn\documents\visual studio 2017\projects\bullcowgame\bullcowgame\fbull_cow_game.cpp(161): warning C4267: 'initializing': conversion from 'size_t' to 'int32', possible loss of data
+  main.cpp
+  Generating Code...
   BullCowGame.vcxproj -> C:\Users\Glyn\Documents\Visual Studio 2017\Projects\BullCowGame\x64\Debug\BullCowGame.exe

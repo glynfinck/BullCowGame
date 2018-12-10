@@ -1,3 +1,6 @@
+/* See fbull_cow_game for game logic.
+*/
+
 #pragma once
 #include <string>
 #include <iostream>
@@ -37,6 +40,7 @@ public:
 
 	void print_game_intro();
 	
+	// Public getter functions
 	int32 get_max_tries() const;
 	int32 get_current_try() const;
 	int32 get_hidden_word_length() const;
@@ -44,7 +48,7 @@ public:
 	
 	EGuessStatus check_guess_validity(FString) const;
 	
-	void reset(); // TODO make a more rich return value
+	void reset();
 
 	// Counts bulls & cows, and increases try number (assumes valid guess)
 	fbull_cow_count submit_valid_guess(FString); 
@@ -63,11 +67,11 @@ private:
 	FString HIDDEN_WORD6;
 	FString HIDDEN_WORD7;
 
-	// Checks if submitted word length choice is valid
+	// Chosen word length validation methods
 	FString get_valid_word_length() const;
 	EWordLengthStatus check_word_length_validity(FString) const;
 
-
+	// Helper functions
 	bool is_isogram(FString) const;
 	bool is_lowercase(FString) const;
 	bool is_string_number(FString) const;

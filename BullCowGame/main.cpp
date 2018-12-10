@@ -1,8 +1,6 @@
 /*This is the console executable, that makes use of the bull_cow class
-This actas as the view in a MVC pattern, and is responsible for all
+This acts as as the view in a MVC pattern, and is responsible for all
 user interaction. For game logic see the fbull_cow_game class.
-
-
 */
 
 #include <iostream>
@@ -50,7 +48,6 @@ void play_game()
 		std::cout << ". Cows = " << bull_cow_count.cows << std::endl;
 	}
 	print_game_summary();
-	// TODO add a game summary
 }
 
 // Loop continually unitl the user enters a valid guess

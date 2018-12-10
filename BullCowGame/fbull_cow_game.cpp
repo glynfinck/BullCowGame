@@ -1,3 +1,12 @@
+/*  This is the Bull Cow Game class and contains various public and private functions
+    and variables. The game logic is as follows:
+
+    The user thinks of any isogram word, and gives out the number of letters in the word.
+	The game responds with the number of Cows & Bulls for each guessed word. As with the 
+	digit version, "Cow" means a letter in the wrong position, while "Bull" means a letter
+	in the right position.
+*/
+
 #include "fbull_cow_game.h"
 #include <map>
 #define TMap std::map
@@ -7,6 +16,7 @@ using FString = std::string;
 using int32 = int;
 
 // Initializes the game and initializes hidden word to one of length 3 by default
+// Also prints intro to the game
 fbull_cow_game::fbull_cow_game() 
 { 
 	HIDDEN_WORD3 = "eat";
@@ -52,14 +62,14 @@ int32 fbull_cow_game::get_max_tries() const
 // Resets the game and initializes hidden word to one of length 3 by default
 void fbull_cow_game::reset()
 {
-	HIDDEN_WORD3 = "eat";
-	HIDDEN_WORD4 = "four";
-	HIDDEN_WORD5 = "lying";
-	HIDDEN_WORD6 = "planet";
-	HIDDEN_WORD7 = "tabloid";
-
+	// Gets the a chosen word length from the user
 	CHOSEN_WORD_LENGTH = get_valid_word_length();
+
+	// Converts the inputted string for chosen word length into an integer
 	int w_length = std::stoi(CHOSEN_WORD_LENGTH);
+
+	// Assigns my_hidden_word based on the chosen word length
+	// Assumes that the word length inputted from above is between 3 and 7
 	if (w_length == 7) {
 		my_hidden_word = HIDDEN_WORD7;
 	}
@@ -75,6 +85,8 @@ void fbull_cow_game::reset()
 	else if (w_length == 3) {
 		my_hidden_word = HIDDEN_WORD3;
 	}
+
+	// Resets win status and current try
 	bgame_won = false;
 	my_current_try = 1;
 	return;
@@ -93,7 +105,7 @@ EGuessStatus fbull_cow_game::check_guess_validity(FString guess) const
 	}
 	else if (!is_lowercase(guess)) // If the guess isn't all lowercase
 	{
-		return EGuessStatus::Not_Lowercase; // TODO write a function
+		return EGuessStatus::Not_Lowercase; 
 	}
 	else if (guess.length() != get_hidden_word_length()) // If the length is wrong
 	{
@@ -106,7 +118,8 @@ EGuessStatus fbull_cow_game::check_guess_validity(FString guess) const
 }
 
 
-
+// Prompts user for a word length, and then checks if the inputted word lenght is valid.
+// Loops until the user inputs a valid word length
 FString fbull_cow_game::get_valid_word_length() const
 {
 	FString length_choice = "";
@@ -133,7 +146,8 @@ FString fbull_cow_game::get_valid_word_length() const
 	return length_choice;
 }
 
-EWordLengthStatus fbull_cow_game::check_word_length_validity(FString word_length) const //TODO implement the function
+// Returns the EWordLengthStatus of an inputted word to check its validity
+EWordLengthStatus fbull_cow_game::check_word_length_validity(FString word_length) const 
 {
 	if (!is_string_number(word_length)) // If the word length is not an integer
 	{
@@ -187,7 +201,7 @@ fbull_cow_count fbull_cow_game::submit_valid_guess(FString guess)
 	return bull_cow_count;
 }
 
-
+// Returns true if the inputted word is an isogram
 bool fbull_cow_game::is_isogram(FString word) const
 {
 	if (word.length() <= 1) { return true; }
@@ -209,6 +223,7 @@ bool fbull_cow_game::is_isogram(FString word) const
 	return true;
 }
 
+// Returns true if the inputted string is comprised of all lowercase characters
 bool fbull_cow_game::is_lowercase(FString word) const
 {
 	if (word.length() < 1) { return true; }
@@ -226,8 +241,9 @@ bool fbull_cow_game::is_lowercase(FString word) const
 	return true;
 }
 
-// 
-bool fbull_cow_game::is_string_number(FString word) const //TODO implement this method
+// Returns true if the string coming is only comprised of digits 
+// (i.e. "34" or "1" would return true, "abc" or "1one" would return false)
+bool fbull_cow_game::is_string_number(FString word) const 
 {
 	for (int i = 0; i < word.length(); i++) // Loop through each character in the word
 	{
@@ -240,7 +256,7 @@ bool fbull_cow_game::is_string_number(FString word) const //TODO implement this 
 }
 
 // Assumes the input stirng is of length 1 and contains a digit between 0 and 9
-bool fbull_cow_game::is_string_number_within_range(FString word) const //TODO implement this method
+bool fbull_cow_game::is_string_number_within_range(FString word) const 
 {
 	// Converts the FString into an integer
 	int length = std::stoi(word);
