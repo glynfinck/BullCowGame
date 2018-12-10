@@ -3,6 +3,7 @@ This acts as as the view in a MVC pattern, and is responsible for all
 user interaction. For game logic see the fbull_cow_game class.
 */
 
+#pragma once
 #include <iostream>
 #include <string>
 #include "fbull_cow_game.h"
